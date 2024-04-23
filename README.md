@@ -1,0 +1,2 @@
+# OptimissaSerilog
+Optimissa.SeriLog
