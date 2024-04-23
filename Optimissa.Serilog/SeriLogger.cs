@@ -36,8 +36,9 @@ namespace Optimissa.Serilog
 
                 if (throwEx)
                     throw;
+            }   
 
-            }
+            return default(TResult);
         }
 
         public void Write(LogEvent logEvent)

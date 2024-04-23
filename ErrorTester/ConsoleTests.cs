@@ -6,7 +6,7 @@ using Serilog.Events;
 
 namespace ErrorTester
 {
-    public class Tests
+    public class ConsoleTests
     {
         private SeriLogger _logger;
 
