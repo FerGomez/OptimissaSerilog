@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optimissa.Serilog", "Optimissa.Serilog\Optimissa.Serilog.csproj", "{C64C8BF0-859F-45DF-BB22-97464BDC847D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optimissa.Serilog", "Optimissa.Serilog\Optimissa.Serilog.csproj", "{C64C8BF0-859F-45DF-BB22-97464BDC847D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optimissa.ErrorTester", "ErrorTester\Optimissa.ErrorTester.csproj", "{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender", "EmailSender\EmailSender.csproj", "{5DF76804-F5D8-4D6B-9508-69587B3E3B84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{C64C8BF0-859F-45DF-BB22-97464BDC847D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C64C8BF0-859F-45DF-BB22-97464BDC847D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C64C8BF0-859F-45DF-BB22-97464BDC847D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF76804-F5D8-4D6B-9508-69587B3E3B84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF76804-F5D8-4D6B-9508-69587B3E3B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF76804-F5D8-4D6B-9508-69587B3E3B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF76804-F5D8-4D6B-9508-69587B3E3B84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
