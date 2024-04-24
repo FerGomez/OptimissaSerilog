@@ -27,5 +27,24 @@ namespace ErrorTester
 
             Assert.Pass();
         }
+
+        [Test]
+        public async Task Verbose_ActionSucceeds_LogsSuccessMessages()
+        {
+            await Serilogger.VerboseLog(() =>
+            {
+                return 99;
+            });
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public async Task Verbose_ActionThrowsException_LogsExceptionDetails()
+        {
+            await Serilogger.VerboseLog(Func<int> () => { throw new InvalidOperationException("Something went wrong"); });
+
+            Assert.Pass();
+        }
     }
 }
