@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optimissa.Serilog", "Optimissa.Serilog\Optimissa.Serilog.csproj", "{C64C8BF0-859F-45DF-BB22-97464BDC847D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optimissa.Serilog.ErrorTester", "ErrorTester\Optimissa.Serilog.ErrorTester.csproj", "{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaText", "PruebaNunit\PruebaText.csproj", "{339F2959-4342-4AEA-B95D-004309867675}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		{C64C8BF0-859F-45DF-BB22-97464BDC847D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C64C8BF0-859F-45DF-BB22-97464BDC847D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C64C8BF0-859F-45DF-BB22-97464BDC847D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0129E17-81DE-4C57-83AA-CF9F738B4F1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
