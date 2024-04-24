@@ -8,19 +8,16 @@ namespace ErrorTester
 {
     public class ConsoleTests
     {
-        private SeriLogger _logger;
-
 
         [SetUp]
         public void SetUp()
         {
-            _logger = new SeriLogger(new LoggerConfiguration().WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Error).CreateLogger());
         }
 
         [Test]
         public async Task Error_ActionSucceeds_LogsSuccessMessages()
         {
-            await _logger.ProcessError(() =>
+            await SeriLogger.ProcessError(() =>
             {
                 return 2;
             });
@@ -31,7 +28,7 @@ namespace ErrorTester
         [Test]
         public async Task Error_ActionThrowsException_LogsExceptionDetails()
         {
-            await _logger.ProcessError(Func<int> () => { throw new InvalidOperationException("test"); });
+            await SeriLogger.ProcessError(Func<int> () => { throw new InvalidOperationException("test"); });
 
             Assert.Pass();
         }

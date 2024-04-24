@@ -1,6 +1,9 @@
-﻿using Serilog;
+﻿using Microsoft.Extensions.Configuration;
+using Serilog;
 using Serilog.Core;
 using Serilog.Events;
+using Serilog.Sinks.Email;
+using Serilog.Sinks.MSSqlServer.Sinks.MSSqlServer.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +15,24 @@ namespace Optimissa.Serilog
 {
     public class SeriLogger
     {
-        private readonly Logger _logger;
 
-        public SeriLogger(Logger logger)
+        private static readonly ILogger _logger;
+
+        static SeriLogger()
         {
-            _logger = logger;
+
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
+                .Build();
+
+
+            _logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
+
         }
 
-        public async Task<TResult> ProcessError<TResult>(
+        public static async Task<TResult> ProcessError<TResult>(
             Func<TResult> action,
             bool throwEx = true,
             [CallerMemberName] string caller = null,
@@ -27,7 +40,6 @@ namespace Optimissa.Serilog
         {
             try
             {
-                _logger.Information($"Action is executing (line {lineNumber})");
                 return action();
             }
             catch (Exception ex)
@@ -36,14 +48,10 @@ namespace Optimissa.Serilog
 
                 if (throwEx)
                     throw;
-            }   
+            }
 
             return default(TResult);
         }
 
-        public void Write(LogEvent logEvent)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
