@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace Optimissa.Serilog
 {
-    public class SeriLogger
+    public class Serilogger
     {
 
         private static readonly ILogger _logger;
 
-        static SeriLogger()
+        static Serilogger()
         {
 
             var configuration = new ConfigurationBuilder()

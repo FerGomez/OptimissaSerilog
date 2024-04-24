@@ -9,17 +9,12 @@ namespace ErrorTester
     public class ConsoleTests
     {
 
-        [SetUp]
-        public void SetUp()
-        {
-        }
-
         [Test]
         public async Task Error_ActionSucceeds_LogsSuccessMessages()
         {
-            await SeriLogger.ProcessError(() =>
+            await Serilogger.ProcessError(() =>
             {
-                return 2;
+                return 99;
             });
 
             Assert.Pass();
@@ -28,7 +23,7 @@ namespace ErrorTester
         [Test]
         public async Task Error_ActionThrowsException_LogsExceptionDetails()
         {
-            await SeriLogger.ProcessError(Func<int> () => { throw new InvalidOperationException("test"); });
+            await Serilogger.ProcessError(Func<int> () => { throw new InvalidOperationException("Something went wrong"); });
 
             Assert.Pass();
         }
