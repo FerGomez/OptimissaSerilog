@@ -47,7 +47,7 @@ namespace Optimissa.Serilog
                     throw;
             }
 
-            return default(TResult);
+            return default;
         }
 
         public static async Task<TResult> ProcessFatal<TResult>(
@@ -68,7 +68,7 @@ namespace Optimissa.Serilog
                     throw;
             }
 
-            return default(TResult);
+            return default;
         }
 
         public static async Task<TResult> ProcessVerbose<TResult>(Func<TResult> action, bool throwEx = true,
@@ -86,24 +86,27 @@ namespace Optimissa.Serilog
                     throw;
             }
 
-            return default(TResult);
+            return default;
         }
 
-        public async Task ProcessWarning<TResult>(Func<TResult> action, string message = "", bool throwException = true,
+        public static async Task<TResult> ProcessWarning<TResult>(Func<TResult> action, string message = "", bool throwException = true,
                        [CallerMemberName] string method = null,
                        [CallerLineNumber] int lineNumber = 0)
         {
             try
             {
                 _logger.Warning($" Warning  con el metodo '{method}' en la linea  {lineNumber}");
-                var result = action();
-            }6
+                var result = action;
+                return result();
+            }
             catch (Exception ex)
             {
 
                 _logger.Warning($"Warning en la linea  {lineNumber} del metodo'{method}': {message} (Excepcion: {ex.Message})");
 
             }
+
+            return default;
         }
 
 

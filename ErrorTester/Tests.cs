@@ -6,7 +6,7 @@ using Serilog.Events;
 
 namespace ErrorTester
 {
-    public class ConsoleTests
+    public class Tests
     {
 
         [Test]
@@ -50,7 +50,7 @@ namespace ErrorTester
         [Test]
         public async Task Verbose_ActionSucceeds_LogsSuccessMessages()
         {
-            await Serilogger.VerboseLog(() =>
+            await Serilogger.ProcessVerbose(() =>
             {
                 return 99;
             });
@@ -61,9 +61,27 @@ namespace ErrorTester
         [Test]
         public async Task Verbose_ActionThrowsException_LogsExceptionDetails()
         {
-            await Serilogger.VerboseLog(Func<int> () => { throw new InvalidOperationException("Something went wrong"); });
+            await Serilogger.ProcessVerbose(Func<int> () => { throw new InvalidOperationException("Something went wrong"); });
 
             Assert.Pass();
         }
+
+
+        [Test]
+        // Verifica que el mensaje de éxito predeterminado se registre correctamente
+        public async Task Warning_ActionSucceds_LogsSuccessMessage()
+        {
+            Func<int> SuccesfulAction = () => { return 23; };
+            await Serilogger.ProcessWarning(SuccesfulAction);
+        }
+
+        [Test]
+        // Verifica que el mensaje de advertencia junto con el mensaje de excepción se registre correctamente
+        public async Task Warning_WhenActionThrowsException_LoggerCalledWithWarning()
+        {
+            Func<int> FailingAction = () => throw new InvalidOperationException("Operacion invalida");
+            await Serilogger.ProcessWarning(FailingAction);
+        }
+
     }
 }
