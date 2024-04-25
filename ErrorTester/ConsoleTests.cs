@@ -10,6 +10,25 @@ namespace ErrorTester
     {
 
         [Test]
+        public async Task Fatal_ActionSucceeds_LogsSuccessMessages()
+        {
+            await Serilogger.ProcessFatal(() =>
+            {
+                return 99;
+            });
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public async Task Fatal_ActionThrowsException_LogsExceptionDetails()
+        {
+            await Serilogger.ProcessFatal(Func<int> () => { throw new InvalidOperationException("Something went wrong"); });
+
+            Assert.Pass();
+        }
+
+        [Test]
         public async Task Error_ActionSucceeds_LogsSuccessMessages()
         {
             await Serilogger.ProcessError(() =>

@@ -20,16 +20,13 @@ namespace Optimissa.Serilog
 
         static Serilogger()
         {
-
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
                 .Build();
 
-
             _logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
-
         }
 
         public static async Task<TResult> ProcessError<TResult>(
@@ -53,14 +50,34 @@ namespace Optimissa.Serilog
             return default(TResult);
         }
 
+        public static async Task<TResult> ProcessFatal<TResult>(
+            Func<TResult> action,
+            bool throwEx = true,
+            [CallerMemberName] string caller = null,
+            [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                return action();
+            }
+            catch (Exception ex)
+            {
+                _logger.Fatal(ex, $"Fatal Exception in {caller} (line {lineNumber})\n${ex.Message}");
+
+                if (throwEx)
+                    throw;
+            }
+
+            return default(TResult);
+        }
+
         public static async Task<TResult> VerboseLog<TResult>(Func<TResult> action, bool throwEx = true,
                               [CallerMemberName] string caller = null
                             , [CallerLineNumber] int lineNumber = 0)
         {
             try
             {
-                action();
-
+                return action();
             }
             catch (Exception ex)
             {
@@ -70,8 +87,6 @@ namespace Optimissa.Serilog
             }
 
             return default(TResult);
-
-
         }
 
     }
